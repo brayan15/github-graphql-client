@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  &__branding,
+  &__branding-link {
+    color: $white;
+  }
+
+  &__search-wrapper {
+    align-items: center;
+    display: flex;
+  }
+}

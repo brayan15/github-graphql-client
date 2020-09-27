@@ -10,8 +10,8 @@ describe('App tests',() => {
   })
 
   it('renders learn react link', () => {
-    const linkElement = wrapper.find('.app-link')
+    const container = wrapper.find('.app')
   
-    expect(linkElement.text()).toBe('Learn React')
+    expect(container.exists()).toBe(true)
   })
 })
