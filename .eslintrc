@@ -1,0 +1,75 @@
+{
+  "extends": ["react-app", "eslint:recommended"],
+  "plugins": ["react-hooks", "jsx-a11y"],
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "globals": {
+    "mount": "readonly",
+    "shallow": "readonly",
+    "render": "readonly"
+  },
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "linebreak-style": "off",
+    "class-methods-use-this": ["off"],
+    "import/prefer-default-export": "off",
+    "import/no-named-as-default": 0,
+    "no-param-reassign": [
+      "error",
+      {
+        "props": false
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+      {
+        "blankLine": "any",
+        "prev": ["const", "let", "var"],
+        "next": ["const", "let", "var"]
+      }
+    ],
+    "semi": ["error", "never"],
+    "arrow-parens": ["error", "as-needed"],
+    "jsx-a11y/href-no-hash": "off",
+    "react/jsx-filename-extension": "off",
+    "react/sort-comp": [
+      "error",
+      {
+        "order": [
+          "lifecycle",
+          "everything-else",
+          "rendering",
+          "static-methods"
+        ],
+        "groups": {
+          "rendering": ["/^render.+$/", "render"]
+        }
+      }
+    ],
+    "object-curly-newline": [
+      "error",
+      {
+        "consistent": true
+      }
+    ],
+    "function-paren-newline": "off",
+    "react/no-did-mount-set-state": "off",
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error", "info"]
+      }
+    ],
+    "jsx-a11y/anchor-has-content": "off",
+    "react/no-danger": "off",
+    "import/no-extraneous-dependencies": "off",
+    "indent": "off",
+    "jsx-a11y/heading-has-content": "off"
+  }
+}
