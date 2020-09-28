@@ -1,19 +1,18 @@
 module.exports = {
   collectCoverageFrom: [
-    'src/**/*.{js,jsx}',
+    'src/**/*.{js,jsx,ts,tsx}',
     '!**/coverage/**',
     '!<rootDir>/src/serviceWorker.js',
     '!<rootDir>/node_modules/',
-    '!<rootDir>/src/index.js',
-    '!src/index.js',
-    '!src/setupTests.js',
-    '!src/store.js'
+    '!<rootDir>/src/App.js',
+    '!<rootDir>/stories/',
+    '!**/index.js',
   ],
   setupFiles: ['dotenv/config'],
   snapshotSerializers: ['enzyme-to-json/serializer'],
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.js'],
   testMatch: [
-    '<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}',
+    '<rootDir>/**/__tests__/**/*.{js,jsx,mjs}',
     '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}'
   ],
   testEnvironment: 'jest-environment-node',

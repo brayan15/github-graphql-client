@@ -18,7 +18,7 @@ class RestClient {
    * @return {json}  with query data
    */
 
-  getReposUser = user => {
+  getReposUser = (user: string) => {
     return this._authApi
       .post('graphql', {
         query: clientQueries.queries.getUser,

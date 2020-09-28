@@ -22,7 +22,7 @@ const TableRepositories = () => {
         name: 'prueba-swapps',
         url: 'https://github.com/brayan15/prueba-swapps',
         description: 'Prueba realizada para el cargo de Fronted'
-      },
+      }
     ]
   }, [])
 
@@ -60,7 +60,7 @@ const TableRepositories = () => {
     setTerm(value)
   }
 
-  const avialableRepositories = term === '' ? repositories : repositoriesSerachResult 
+  const avialableRepositories = term === '' ? repositories : repositoriesSerachResult
 
   return (
     <div className='table'>
