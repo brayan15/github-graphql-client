@@ -1,5 +1,6 @@
 import React from 'react'
 import { Layout } from 'antd'
+import HomeContext from './views/Home'
 import Header from './components/header'
 import Footer from './components/footer'
 import TableRepositories from './components/table'
@@ -10,14 +11,16 @@ function App() {
   return (
     <div className='app'>
       <Layout>
-        <Header />
-        <Layout.Content className='container'>
-          <br />
-          <br />
-          <br />
-          <TableRepositories />
-        </Layout.Content>
-        <Footer />
+        <HomeContext>
+          <Header />
+          <Layout.Content className='container'>
+            <br />
+            <br />
+            <br />
+            <TableRepositories />
+          </Layout.Content>
+          <Footer />
+        </HomeContext>
       </Layout>
     </div>
   )

@@ -2,10 +2,10 @@
 import React from 'react' 
 import restClient from "../services/rest-client"
 
-const useFecthUser = () => {
+const useFetchUser = () => {
   const [resolved, setResolved] = React.useState(false)
 
-  const fetchUSer = async (user: string) => {
+  const fetchUserRepositories = async (user: string) => {
     try {
       setResolved(true)
 
@@ -17,7 +17,7 @@ const useFecthUser = () => {
     }
   }
 
-  return [fetchUSer, resolved]
+  return [fetchUserRepositories, resolved]
 }
 
-export default useFecthUser
+export default useFetchUser

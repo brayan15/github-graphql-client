@@ -1,10 +1,10 @@
 import { renderHook } from '@testing-library/react-hooks'
 import restClient from '../services/rest-client'
-import useFecthUser from './useFecthUser'
+import useFetchUser from './useFetchUser'
 
 jest.mock('../services/rest-client')
 
-describe('Test of useFecthUser hook', () => {
+describe('useFetchUser hook tests', () => {
   const originalError = console.error
 
   beforeAll(() => {
@@ -37,7 +37,7 @@ describe('Test of useFecthUser hook', () => {
 
   it('Hook Should return user data', async () => {
     restClient.getReposUser.mockImplementation(() => Promise.resolve(mockUser))
-    const { result } = renderHook(() => useFecthUser())
+    const { result } = renderHook(() => useFetchUser())
     const fetchUser = result.current[0]
 
     fetchUser()
@@ -49,7 +49,7 @@ describe('Test of useFecthUser hook', () => {
 
   it('Hook should return error', async () => {
     restClient.getReposUser.mockImplementation(() => Promise.reject())
-    const { result } = renderHook(() => useFecthUser())
+    const { result } = renderHook(() => useFetchUser())
     const fetchUser = result.current[0]
 
     fetchUser()

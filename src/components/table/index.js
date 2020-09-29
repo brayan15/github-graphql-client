@@ -1,30 +1,49 @@
+// @flow
 import React from 'react'
 import { Table, Row, Col, Input } from 'antd'
+import GithubContext from '../../contexts/githubContext'
 
 const TableRepositories = () => {
   const [term, setTerm] = React.useState('')
+  const { state } = React.useContext(GithubContext)
   const repositories = React.useMemo(() => {
-    return [
-      {
-        key: '1',
-        name: 'belloterio',
-        url: 'https://github.com/brayan15/belloterio',
-        description: ''
-      },
-      {
-        key: '2',
-        name: 'simple-slider',
-        url: 'https://api.github.com/repos/brayan15/simple-slider',
-        description: 'Simple Slider project made in React Js from scratch'
-      },
-      {
-        key: '3',
-        name: 'prueba-swapps',
-        url: 'https://github.com/brayan15/prueba-swapps',
-        description: 'Prueba realizada para el cargo de Fronted'
-      }
-    ]
-  }, [])
+    let parseRepositories = []
+
+    if (state.user !== null && state.user.repositories !== undefined) {
+      parseRepositories = state.user.repositories.edges.reduce(
+        (accumulator, currentValue, index) => {
+          const { node } = currentValue
+          let languages = []
+
+          if (node.languages.edges.length > 0) {
+            languages = node.languages.edges.reduce((accLanguage, currentLanguage) => {
+              const { node } = currentLanguage
+
+              const lang = [...accLanguage, node.name]
+
+              return lang
+            }, [])
+          }
+
+          const repos = [
+            ...accumulator,
+            {
+              key: index + 1,
+              name: node.name,
+              description: node.description,
+              url: node.url,
+              languages: languages.join(',')
+            }
+          ]
+
+          return repos
+        },
+        []
+      )
+    }
+
+    return parseRepositories
+  }, [state])
 
   const columns = React.useMemo(() => {
     return [
@@ -56,7 +75,7 @@ const TableRepositories = () => {
     return repositories.filter(repository => repository.name.toLowerCase().includes(term))
   }, [term, repositories])
 
-  const onsearchInput = value => {
+  const onSearchInput = value => {
     setTerm(value)
   }
 
@@ -69,7 +88,11 @@ const TableRepositories = () => {
           <p>You can see search results:</p>
         </Col>
         <Col xs={24} sm={12} md={8} lg={6}>
-          <Input.Search placeholder='Search by project name' onSearch={onsearchInput} />
+          <Input.Search
+            className='table__search'
+            onSearch={onSearchInput}
+            placeholder='Search by project name'
+          />
         </Col>
       </Row>
       <Table dataSource={avialableRepositories} columns={columns} size={'middle'} />
