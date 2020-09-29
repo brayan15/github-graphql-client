@@ -14,8 +14,8 @@ class RestClient {
 
   /**
    * Get repositories of user from api
-   * @param  {string} user name user github
-   * @return {json}  with query data
+   * @param  {string} username
+   * @return {Promise} 
    */
 
   getReposUser = (user: string) => {
