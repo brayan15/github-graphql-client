@@ -16,7 +16,7 @@ const languagesMock = [
   {
     node: {
       name: 'HTML'
-    },
+    }
   }
 ]
 
@@ -43,9 +43,7 @@ const languageRepoMock = {
         description: 'Simple Slider project made in React Js from scratch',
         url: 'test/url',
         languages: {
-          edges: [
-            ...languagesMock
-          ]
+          edges: [...languagesMock]
         }
       }
     }
@@ -147,5 +145,22 @@ describe('Table tests', () => {
 
     expect(content.exists()).toBe(true)
     expect(table.dataSource).toEqual(renderwithLanguageMock)
+  })
+
+  it('Should render spinner when data is loading', () => {
+    jest.spyOn(React, 'useContext').mockImplementation(() => ({
+      state: {
+        user: {},
+        error: false,
+        loading: true
+      }
+    }))
+
+    const wrapper = shallow(<Table />)
+    const spinner = wrapper.find('.spinner')
+    const content = wrapper.find('.table')
+
+    expect(spinner.exists()).toBe(true)
+    expect(content.exists()).toBe(false)
   })
 })

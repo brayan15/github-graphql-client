@@ -14,9 +14,6 @@ function App() {
         <HomeContext>
           <Header />
           <Layout.Content className='container'>
-            <br />
-            <br />
-            <br />
             <TableRepositories />
           </Layout.Content>
           <Footer />

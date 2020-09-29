@@ -1,11 +1,18 @@
 // @flow
 import React from 'react'
-import { Table, Row, Col, Input } from 'antd'
+import { Table, Row, Col, Input, Spin, Space, notification } from 'antd'
 import GithubContext from '../../contexts/githubContext'
+import {
+  userNotFoundTitle,
+  userNotFoundDescription,
+  userNotHasProjectsTitle,
+  userNotHasProjectsDescription
+} from '../../const'
 
 const TableRepositories = () => {
   const [term, setTerm] = React.useState('')
   const { state } = React.useContext(GithubContext)
+  const isLoading = React.useMemo(() => state.loading, [state])
   const repositories = React.useMemo(() => {
     let parseRepositories = []
 
@@ -67,9 +74,36 @@ const TableRepositories = () => {
         key: 'description',
         sorter: (a, b) => (a.description < b.description ? 1 : -1),
         sortDirections: ['descend', 'ascend']
+      },
+      {
+        title: 'Language',
+        dataIndex: 'languages',
+        key: 'languages'
       }
     ]
   }, [])
+
+  const openNotification = (title: string, description: string) => {
+    notification.info({
+      message: title,
+      description
+    })
+  }
+
+  React.useEffect(() => {
+    if (state.user === null && !state.loading) {
+      return openNotification(userNotFoundTitle, userNotFoundDescription)
+    }
+
+    if (
+      state.user !== null &&
+      !state.loading &&
+      repositories.length === 0 &&
+      state.user.repositories !== undefined
+    ) {
+      return openNotification(userNotHasProjectsTitle, userNotHasProjectsDescription)
+    }
+  }, [state, repositories])
 
   const repositoriesSerachResult = React.useMemo(() => {
     return repositories.filter(repository => repository.name.toLowerCase().includes(term))
@@ -81,7 +115,7 @@ const TableRepositories = () => {
 
   const avialableRepositories = term === '' ? repositories : repositoriesSerachResult
 
-  return (
+  return !isLoading ? (
     <div className='table'>
       <Row gutter={24}>
         <Col xs={24} sm={12} md={16} lg={18}>
@@ -97,6 +131,10 @@ const TableRepositories = () => {
       </Row>
       <Table dataSource={avialableRepositories} columns={columns} size={'middle'} />
     </div>
+  ) : (
+    <Space size='middle' className='spinner'>
+      <Spin size='large' />
+    </Space>
   )
 }
 
