@@ -3,6 +3,8 @@ import React from 'react'
 import { Table, Row, Col, Input, Spin, Space, notification } from 'antd'
 import GithubContext from '../../contexts/githubContext'
 import {
+  errorTitle,
+  errorDescription,
   userNotFoundTitle,
   userNotFoundDescription,
   userNotHasProjectsTitle,
@@ -83,8 +85,8 @@ const TableRepositories = () => {
     ]
   }, [])
 
-  const openNotification = (title: string, description: string) => {
-    notification.info({
+  const openNotification = (title: string, description: string, type: string = 'info') => {
+    notification[type]({
       message: title,
       description
     })
@@ -102,6 +104,10 @@ const TableRepositories = () => {
       state.user.repositories !== undefined
     ) {
       return openNotification(userNotHasProjectsTitle, userNotHasProjectsDescription)
+    }
+
+    if (state.error) {
+      return openNotification(errorTitle, errorDescription, 'error')
     }
   }, [state, repositories])
 

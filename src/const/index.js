@@ -1,4 +1,6 @@
+export const errorTitle = 'Oops'
 export const userNotFoundTitle = 'User Not Found'
-export const userNotFoundDescription = 'Could not resolve to a user with the search param'
 export const userNotHasProjectsTitle = 'Projects Not Found'
+export const errorDescription = 'Something was wrong, please retry'
 export const userNotHasProjectsDescription = 'User does not have projects'
+export const userNotFoundDescription = 'Could not resolve to a user with the search param'

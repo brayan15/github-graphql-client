@@ -27,7 +27,6 @@ class RestClient {
         }
       })
       .then(({ data }) => data.data)
-      .catch(error => console.error(error))
   }
 }
 
