@@ -1,6 +1,6 @@
-import restClient from './rest-client'
+import restClient from '../rest-client'
 
-jest.mock('./rest-client')
+jest.mock('../rest-client')
 
 describe('Service tests', () => {
     const mockUser = {
