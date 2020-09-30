@@ -1,68 +1,90 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Github GraphQL Client
+Simple client to consume Github GraphQL API
+
+## Installation
+
+1. Installs all the dependencies necessary to run the project
+    ```
+    $ yarn
+    ```
+
+
+2. `.env.local`
+
+    ```javascript
+    REACT_APP_BASE_URL=https://api.github.com/
+    REACT_APP_PERSONAL_TOKEN=Personal Acces Token
+    ```
+    You must add `.env.local` file at root of project, also you need a `Personal Acces Token` from Github, if you don't know how to get it, you can click here [here](https://docs.github.com/es/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token)
+
+3. Runs project
+    ```
+    $ yarn start
+    ```
+
+## Unit Testing
+
+The components have unit test:
+
+- `App` path: `src/App.test.js`.
+- Function get all repos, path: `src/services/__tests__/rest-client.test.js`.
+- `Home` path: `src/views/Home/index.test.js`
+- `Header` path: `src/components/header/index.test.js`
+- `Table` path: `src/components/table/index.test.js`
+- `Footer` path: `src/components/footer/index.test.js`
+- `Actions` path: `src/store/github/repositories/__tests__/actions.test.js`
+- `Reducer` path: `src/store/github/repositories/__tests__/reducer.test.js`
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+1. #### `$ yarn`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+    Installs all the dependencies necessary to run the project
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+2. ####  `$ yarn start`
 
-### `yarn test`
+    Runs the app in the development mode.<br />
+    Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    The page will reload if you make edits.<br />
+    You will also see any lint errors in the console.
 
-### `yarn build`
+3. #### `$ yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    Builds the app for production to the `build` folder.<br />
+    It correctly bundles React in production mode and optimizes the build for the best performance.
+    Your app is ready to be deployed!
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+    See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. #### `$ yarn lint`
 
-### `yarn eject`
+    Runs ESlint in `src` folder and show errors in terminal, ESLint is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code, with the goal of making code more consistent and avoiding bugs
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+5. #### `$ yarn lint:fix`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    Runs ESlint and automatically fix problems in `src` folder
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+6. #### `$ yarn flow`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    Runs `flow`, flow is a static type checker for your JavaScript code. It lets you annotate the variables, functions, and React components with a special type syntax, and catch mistakes early.
+    Flow allows us to easily add static type checking to our JavaScript. Flow will help you prevent bugs and allow for better code documentation among other things.
 
-## Learn More
+7. #### `$ yarn test`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    Runs `test`. Launches the test runner.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+8. #### `$ yarn test:watch`
 
-### Code Splitting
+    Runs `test`. Launches the test runner in the interactive watch mode.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+9. #### `$ yarn test:coverage`
 
-### Analyzing the Bundle Size
+    Runs `test --coverage`.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
