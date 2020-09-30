@@ -2,6 +2,7 @@
 import React from 'react'
 import { Table, Row, Col, Input, Spin, Space, notification } from 'antd'
 import GithubContext from '../../contexts/githubContext'
+import { getRepositories } from '../../store/github/repositories/selectors'
 import {
   errorTitle,
   errorDescription,
@@ -16,42 +17,7 @@ const TableRepositories = () => {
   const { state } = React.useContext(GithubContext)
   const isLoading = React.useMemo(() => state.loading, [state])
   const repositories = React.useMemo(() => {
-    let parseRepositories = []
-
-    if (state.user !== null && state.user.repositories !== undefined) {
-      parseRepositories = state.user.repositories.edges.reduce(
-        (accumulator, currentValue, index) => {
-          const { node } = currentValue
-          let languages = []
-
-          if (node.languages.edges.length > 0) {
-            languages = node.languages.edges.reduce((accLanguage, currentLanguage) => {
-              const { node } = currentLanguage
-
-              const lang = [...accLanguage, node.name]
-
-              return lang
-            }, [])
-          }
-
-          const repos = [
-            ...accumulator,
-            {
-              key: index + 1,
-              name: node.name,
-              description: node.description,
-              url: node.url,
-              languages: languages.join(',')
-            }
-          ]
-
-          return repos
-        },
-        []
-      )
-    }
-
-    return parseRepositories
+    return getRepositories(state)
   }, [state])
 
   const columns = React.useMemo(() => {

@@ -5,13 +5,19 @@ type LanguajeT = {
   }
 }
 
+export type NodeLanguajeT = {
+  languages: {
+    edges: Array<LanguajeT>
+  }
+}
+
 type RepositoryT = {
   node: {
     name: string,
     description: string,
     url: string,
     languages: {
-      edge?: Array<LanguajeT>
+      edges: Array<LanguajeT>
     }
   }
 }
