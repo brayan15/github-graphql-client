@@ -26,12 +26,18 @@ const TableRepositories = () => {
         title: 'Project Name',
         dataIndex: 'name',
         key: 'name',
+        width: 200,
         sorter: (a, b) => (a.name < b.name ? 1 : -1),
         sortDirections: ['descend', 'ascend']
       },
       {
         title: 'Url',
         dataIndex: 'url',
+        render: (url: string) => (
+          <a href={url} target='_blank' without rel='noopener noreferrer'>
+            {url}
+          </a>
+        ),
         key: 'url',
         sorter: (a, b) => (a.url < b.url ? 1 : -1),
         sortDirections: ['descend', 'ascend']
@@ -89,7 +95,7 @@ const TableRepositories = () => {
 
   return !isLoading ? (
     <div className='table'>
-      <Row gutter={24}>
+      <Row gutter={24} className='table__row-search'>
         <Col xs={24} sm={12} md={16} lg={18}>
           <p>You can see search results:</p>
         </Col>

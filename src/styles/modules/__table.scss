@@ -1,4 +1,31 @@
 .table{
   margin-top: 50px;
   width: 100%;
+
+  &__row-search {
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .ant-table {
+      &.ant-table-middle {
+        max-width: 700px;
+        overflow: scroll;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .ant-table-tbody {
+      .ant-table-row {
+        .ant-table-cell{
+          &:first-child {
+            word-break: normal;
+          }
+          
+          word-break: break-all;
+        }
+      }
+    } 
+  }
 }

@@ -10,7 +10,7 @@ import './styles/main.scss'
 function App() {
   return (
     <div className='app'>
-      <Layout>
+      <Layout className='app__layout'>
         <HomeContext>
           <Header />
           <Layout.Content className='container'>
